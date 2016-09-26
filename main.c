@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 ////////////////////////////////////////////////////
 /////////////  Rouvem Pishchik   ///////////////////
@@ -43,6 +42,7 @@ void rem(Node *p, int num) // first remove function, removes a specific node wit
         temp = p->next;
         free(p);
         p = temp;
+        return;
     }
     while(p->next->data != num){
         p = p->next;
@@ -56,7 +56,7 @@ void rem(Node *p, int num) // first remove function, removes a specific node wit
 }
 
 Node* rem2(Node *p, int num){ // second remove function (acts the same as the first)
-    if(p == NULL){          // uses recursion instead then returns the
+    if(p == NULL){          // uses recursion instead then returns the Node
         printf("Data not found\n");
         return NULL;
     }
@@ -72,18 +72,12 @@ Node* rem2(Node *p, int num){ // second remove function (acts the same as the fi
 
 int main()
 {
-    int i; // in c, int variable is always declared outside of for loop.
-    //c++ allows you to do that though
+    int i;
 
     Node *p = (Node *)malloc(sizeof(Node)), *head = p; // allocate memory for first node and declare second node head (you don't really need it)
 
     p->next = NULL; //first node has data 0, next is NULL;
     p->data = 0;
-
-    //printf("%d\n", p->data);
-   //for(i = 0; i < 9; i++){  //fills the list with random numbers
-    //    add(p, rand()%10);
-   // }
 
     add(head, 10); //2nd node
     add(head, 20); //3rd node
@@ -101,6 +95,8 @@ int main()
 
     rem(head, 12); // doesn't do anything
     peek(head);
-
+    free(head);
+    free(p);
+    
     return 0;
 }
